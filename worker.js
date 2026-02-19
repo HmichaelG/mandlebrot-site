@@ -1,6 +1,5 @@
 // Web Worker for computing Mandelbrot set
 const ESCAPE_RADIUS_SQUARED = 4;
-const MIN_DRAG_THRESHOLD = 5;
 
 self.onmessage = function(e) {
     const { width, height, realMin, realMax, imagMin, imagMax, maxIterations } = e.data;
@@ -110,8 +109,8 @@ function getColor(t) {
         const s = (t - 0.8575) / 0.1425;
         return {
             r: Math.floor(255 * (1 - s) + 139 * s),
-            g: Math.floor(165 * (1 - s) + 0 * s),
-            b: Math.floor(0)
+            g: Math.floor(165 * (1 - s)),
+            b: 0
         };
     }
 }
