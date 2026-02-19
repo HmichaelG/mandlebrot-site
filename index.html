@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandelbrot Set Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mandelbrot Set Explorer</h1>
+            <p class="subtitle">Click and drag to zoom into any region</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <button id="resetBtn" class="btn btn-primary">🏠 Reset</button>
+                <button id="backBtn" class="btn btn-secondary" disabled>↶ Back</button>
+            </div>
+
+            <div class="control-group">
+                <label for="maxIterations">
+                    Max Iterations: <span id="iterationValue">256</span>
+                </label>
+                <input type="range" id="maxIterations" min="50" max="1000" value="256" step="50">
+            </div>
+
+            <div class="control-group coordinates">
+                <div class="coord-display">
+                    <strong>Real:</strong> <span id="realRange">[-2.5, 1.0]</span>
+                </div>
+                <div class="coord-display">
+                    <strong>Imaginary:</strong> <span id="imagRange">[-1.2, 1.2]</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="cursor-coords">
+                    <strong>Cursor:</strong> <span id="cursorCoords">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas id="mandelbrotCanvas"></canvas>
+            <div id="selectionRect" class="selection-rect"></div>
+            <div id="loadingIndicator" class="loading-indicator">
+                <div class="spinner"></div>
+                <p>Rendering...</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Drag to select a region and zoom in. Use Reset to return to the full view.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
