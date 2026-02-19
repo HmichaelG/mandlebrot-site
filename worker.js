@@ -1,4 +1,7 @@
 // Web Worker for computing Mandelbrot set
+const ESCAPE_RADIUS_SQUARED = 4;
+const MIN_DRAG_THRESHOLD = 5;
+
 self.onmessage = function(e) {
     const { width, height, realMin, realMax, imagMin, imagMax, maxIterations } = e.data;
     
@@ -20,7 +23,7 @@ self.onmessage = function(e) {
             let y = 0;
             let iteration = 0;
             
-            while (x * x + y * y <= 4 && iteration < maxIterations) {
+            while (x * x + y * y <= ESCAPE_RADIUS_SQUARED && iteration < maxIterations) {
                 const xtemp = x * x - y * y + x0;
                 y = 2 * x * y + y0;
                 x = xtemp;
@@ -74,7 +77,7 @@ function getColor(t) {
         // Dark blue to cyan
         const s = t / 0.16;
         return {
-            r: Math.floor(0 * (1 - s) + 0 * s),
+            r: 0,
             g: Math.floor(7 * (1 - s) + 135 * s),
             b: Math.floor(100 * (1 - s) + 255 * s)
         };
@@ -92,15 +95,15 @@ function getColor(t) {
         return {
             r: Math.floor(50 * (1 - s) + 255 * s),
             g: Math.floor(220 * (1 - s) + 255 * s),
-            b: Math.floor(50 * (1 - s) + 0 * s)
+            b: Math.floor(50 * (1 - s))
         };
     } else if (t < 0.8575) {
         // Yellow to orange
         const s = (t - 0.6425) / 0.215;
         return {
-            r: Math.floor(255),
+            r: 255,
             g: Math.floor(255 * (1 - s) + 165 * s),
-            b: Math.floor(0)
+            b: 0
         };
     } else {
         // Orange to red to dark red

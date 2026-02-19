@@ -1,3 +1,6 @@
+// Constants
+const MIN_DRAG_THRESHOLD = 5;
+
 // Main application state
 const state = {
     canvas: null,
@@ -165,7 +168,7 @@ function handleMouseUp(e) {
     const dx = Math.abs(state.dragEnd.x - state.dragStart.x);
     const dy = Math.abs(state.dragEnd.y - state.dragStart.y);
     
-    if (dx > 5 && dy > 5) {
+    if (dx > MIN_DRAG_THRESHOLD && dy > MIN_DRAG_THRESHOLD) {
         zoomToSelection();
     }
 }
@@ -217,7 +220,7 @@ function handleTouchEnd(e) {
     const dx = Math.abs(state.dragEnd.x - state.dragStart.x);
     const dy = Math.abs(state.dragEnd.y - state.dragStart.y);
     
-    if (dx > 5 && dy > 5) {
+    if (dx > MIN_DRAG_THRESHOLD && dy > MIN_DRAG_THRESHOLD) {
         zoomToSelection();
     }
 }
